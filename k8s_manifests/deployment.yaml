@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: monero
+  labels:
+    app: monero
+spec:
+  selector:
+    app: monero
+  template:
+    metadata:
+      labels:
+        app: monero
+    spec:
+      containers:
+      - name: monero
+        image: 0xvox/monero-docker-armv7
+        resources:
+          requests:
+            cpu: 500m
+            memory: 1Gi
+          limits:
+            cpu: 1
+            memory: 1.5Gi
+        volumeMounts:
+        - name: monero-data
+          mountPath: /data
